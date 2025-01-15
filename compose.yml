@@ -1,0 +1,43 @@
+services:
+  node:
+    image: node:alpine3.21
+    container_name: api-fornecedor
+    ports:
+      - "3333:3333"
+    volumes:
+      - ./src:/app
+    env_file:
+      - .env
+    working_dir: /app
+    command: sh -c "apk add --no-cache tzdata && npm start"
+    environment:
+      TZ: America/Sao_Paulo
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${USER_DB}
+      - MONGO_INITDB_ROOT_PASSWORD=${PWD_DB}
+    volumes:
+      - mongo-data:/data/db
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=${USER_DB}
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=${PWD_DB}
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_BASICAUTH_USERNAME=${USER_ME}
+      - ME_CONFIG_BASICAUTH_PASSWORD=${PWD_ME}
+
+# Define named volumes
+volumes:
+  mongo-data:
+    driver: local

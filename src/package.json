@@ -1,0 +1,20 @@
+{
+  "name": "api-fornecedor",
+  "version": "1.0.0",
+  "description": "CRUD de uma API simples para fornecedor",
+  "main": "./server/*.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon ./server/server.js",
+    "start:prod": "NODE_ENV=production node ./server/server.js"
+  },
+  "author": "Pedro Eugenio / Natan Gomes / Marlan",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.4",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.9"
+  }
+}

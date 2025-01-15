@@ -1,0 +1,27 @@
+GET http://localhost:3333/
+###
+GET http://localhost:3333/api/v1/fornecedores
+###
+GET http://localhost:3333/api/v1/fornecedores/67846843792122ba33cbe2f
+###
+POST http://localhost:3333/api/v1/fornecedores
+Content-Type: application/json
+
+{
+    "nome": "R3 Suprimentos",
+    "cnpj": "10641901000116",
+    "data": "05/12/2024",
+    "valor": 750
+}
+###
+PATCH http://localhost:3333/api/v1/fornecedores/2
+Content-Type: application/json
+
+{
+    "status": "ativo"
+}
+###
+DELETE http://localhost:3333/api/v1/fornecedores/2
+###
+GET http://localhost:3333/api/v1/fornecedores?nome=Cardoso&status=inativo
+###
