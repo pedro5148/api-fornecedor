@@ -33,9 +33,9 @@ const fornecedorService = new FornecedorService();
 //exports.getAllFornec = async (req, res) => {
 export const getAllFornec = async (req, res) => {
     try{
-        console.log(req.query)
+        console.log(req.query) //testando filtros
         //const fornec = await Fornec.find();
-        const fornec = await fornecedorService.findAll();
+        const fornec = await fornecedorService.findAll(req.query);
         res.status(200).json({ 
             status: 'sucess',
             requestdAt: req.requestTime,
@@ -47,7 +47,7 @@ export const getAllFornec = async (req, res) => {
     } catch (err) {
         console.error("Erro ao buscar movimentos:", err.message);
         res.status(500).json({ 
-            err: "Erro ao buscar movimentos" 
+            error: "Erro ao buscar movimentos" 
         });
     }
   };
