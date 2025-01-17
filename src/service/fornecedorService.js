@@ -4,19 +4,44 @@ export class FornecedorService {
     async findAll(filters = {}) {
         const queryObj = {...filters};
 
+        const camposNaoFiltros = ['sort', 'page', 'limit', 'fields'];
+        camposNaoFiltros.forEach(campo => delete queryObj[campo]);
+
         //Filtros basicos
-        const excludeFields = ['telefone','email','endereco','produtos'] // filtrar apenas por nome, cnpj e status
-        excludeFields.forEach(elementos => delete queryObj[elementos]);
+        const excluiCampos = ['telefone','email','endereco','produtos'] // filtrar apenas por nome, cnpj e status
+        excluiCampos.forEach(campo => delete queryObj[campo]);
 
-        //filtros condicionais =,>=,<=, do tipo ?tempo[gte]=5&status=inativo
+        //filtros condicionais =,>=,<=, exemplo: ?tempo[gte]=5&status=inativo
         let queryStr = JSON.stringify(queryObj);
+        // console.log('Query inicial:', queryStr);
         queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
+        const parsedFilters = JSON.parse(queryStr); //Obj dos filtros
 
-        const parsedQuery = JSON.parse(queryStr); //converte para objeto
-        console.log('Filtros aplicados:', parsedQuery);
+        console.log('Filtros condicionais:', parsedFilters);
 
+        let query = Fornec.find(parsedFilters);        
 
-        return await Fornec.find(parsedQuery);
+        //Ordenando
+        if (filters.sort) { //sort vem da requisicao ?sort=preco
+            const orderBy = filters.sort.split(',').join(' ');
+            console.log('Filtros de ordenacao:', orderBy);
+            query = query.sort(orderBy);
+        } else {
+            query = query.sort('-dataCriacao'); //adicionar no banco data da criacao
+        }
+
+        //Limitando campos retornados
+        if (filters.fields) {
+            const fields = filters.fields.split(',').join(' ')
+            query = query.select(fields);
+        } else {
+            query = query.select('-__v') // Retorna todos os campos, exceto esse
+        }
+
+        const result = await query;
+        // console.log('Resultados retornados:', result);
+        return result;
+        // return await query;
     }
 
     async findById(id) {

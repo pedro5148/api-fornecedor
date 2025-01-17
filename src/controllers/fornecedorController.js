@@ -33,7 +33,7 @@ const fornecedorService = new FornecedorService();
 //exports.getAllFornec = async (req, res) => {
 export const getAllFornec = async (req, res) => {
     try{
-        console.log(req.query) //testando filtros
+        console.log('Filtros da requisicao:', req.query) //testando filtros
         //const fornec = await Fornec.find();
         const fornec = await fornecedorService.findAll(req.query);
         res.status(200).json({ 

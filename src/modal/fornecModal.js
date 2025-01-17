@@ -35,6 +35,11 @@ const fornecSchema = new mongoose.Schema({
         default: 'ativo',
         enum: ['ativo','inativo'],
     },
+    dataCriacao: {
+        type: Date,
+        default: Date.now(),
+        select: false
+    },
 })
 
 // Definindo o modelo 

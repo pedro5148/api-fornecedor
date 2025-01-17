@@ -2,7 +2,7 @@ GET http://localhost:3333/
 ###
 GET http://localhost:3333/api/v1/fornecedores
 ###
-GET http://localhost:3333/api/v1/fornecedores/67846843792122ba33cbe2f
+GET http://localhost:3333/api/v1/fornecedores/67870e206d72415446f4da69
 ###
 POST http://localhost:3333/api/v1/fornecedores
 Content-Type: application/json
@@ -10,11 +10,17 @@ Content-Type: application/json
 {
     "nome": "R3 Suprimentos",
     "cnpj": "10641901000116",
-    "data": "05/12/2024",
-    "valor": 750
+    "telefone": "84 9870-4050",
+    "email": "azevedogustavo@campos.br",
+    "endereco": "Colônia da Cunha, 944, Lima, Pernambuco",
+    "produtos": [
+    "nesciunt",
+    "architecto"
+    ],
+    "status": "inativo"
 }
 ###
-PATCH http://localhost:3333/api/v1/fornecedores/2
+PATCH http://localhost:3333/api/v1/fornecedores/6789ace400935dfba939e4e2
 Content-Type: application/json
 
 {
@@ -23,5 +29,7 @@ Content-Type: application/json
 ###
 DELETE http://localhost:3333/api/v1/fornecedores/2
 ###
-GET http://localhost:3333/api/v1/fornecedores?nome=Cardoso&status=inativo
+GET http://localhost:3333/api/v1/fornecedores?sort=nome
+###
+GET http://localhost:3333/api/v1/fornecedores?fields=produtos,nome
 ###
