@@ -65,7 +65,11 @@ Certifique-se de ter o Docker Compose instalado:
      ```bash
      node import-fornecedores.js --import
      ```
-5. **Teste os endpoints**
+5. **Monitorando os logs das requisições**
+   ```bash
+   docker compose logs -f node
+   ```
+6. **Teste os endpoints**
 
    ```bash
    # Listar todos os fornecedores
