@@ -1,11 +1,12 @@
-//const express = require('express')
 import express from 'express'
 const app = express()
-//const morgan = require('morgan')
 import morgan from 'morgan'
+import path from 'path'
 
 //Rota/Controller
 import fornecRoute from './routes/fornecRoutes.js';
+import appError from './utils/appError.js';
+import globalErro from './controllers/errorController.js'
 
 //Middleware
 app.use(morgan('dev')) //retorna o cabecalho das requisicoes
@@ -16,21 +17,18 @@ app.use((req, res, next) => {
     next();
 });
 
+const __dirname = path.resolve();
+const staticPath = path.join(__dirname, 'public');
+app.use(express.static(staticPath));
+
 //Rotas
 app.use('/api/v1/fornecedores', fornecRoute)
-app.get('/', (req, res) => {
-    res.send(`
-        <h1>API de Fornecedores</h1>
-        <p>Esta API permite o gerenciamento de fornecedores. As rotas disponíveis são:</p>
-        <ul>
-            <li>/api/v1/fornecedores - GET (listar fornecedores)</li>
-            <li>/api/v1/fornecedores/:id - GET (buscar fornecedor por ID)</li>
-            <li>/api/v1/fornecedores - POST (criar fornecedor)</li>
-            <li>/api/v1/fornecedores/:id - PATCH (atualizar fornecedor)</li>
-            <li>/api/v1/fornecedores/:id - DELETE (deletar fornecedor)</li>
-        </ul>
-    `);
-  });
 
-//module.exports = app;
+// app.get('/', (req, res) => {});
+app.all('*', (req, res, next) => {
+    next(new appError(`Nao foi possivel encontrar a pagina ${req.originalUrl}`)); //Lanca o erro para o proximo middleware
+});
+
+app.use(globalErro)
+
 export default app;
