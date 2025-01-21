@@ -5,6 +5,7 @@
   "main": "./server/*.js",
   "type": "module",
   "scripts": {
+    "prestart": "npm install",
     "start": "nodemon ./server/server.js",
     "start:prod": "NODE_ENV=production node ./server/server.js"
   },
