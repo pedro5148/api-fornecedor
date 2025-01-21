@@ -48,7 +48,7 @@ Certifique-se de ter o Docker Compose instalado:
   docker compose up -d
   ```
 
-3. **Verificando a saude dos containers:**
+3. **Verificando a saúde dos containers:**
    ```bash
    docker compose ps
    ```
