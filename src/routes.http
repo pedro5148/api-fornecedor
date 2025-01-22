@@ -2,22 +2,22 @@ GET http://localhost:3333/
 ###
 GET http://localhost:3333/api/v1/fornecedores
 ###
-GET http://localhost:3333/api/v1/fornecedores/678bdd79d19da53641876baa
+GET http://localhost:3333/api/v1/fornecedores/67903a4cfdb77e96097beae4
 ###
 POST http://localhost:3333/api/v1/fornecedores
 Content-Type: application/json
 
 {
-    "nome": "Gransyste",
-    "cnpj": "10641901000119",
-    "telefone": "84 9870-4050",
-    "email": "azevedogustavo@campos.br",
-    "endereco": "Colônia da Cunha, 944, Lima, Pernambuco",
-    "status": "inativo",
-    "privado": true
+    "nome": "Moura",
+    "cnpj": "21.906.458/0001-85",
+    "telefone": "84 8797-8566",
+    "email": "lavinia32@hotmail.com",
+    "endereco": "Chácara Paulo Barbosa, 22, Freitas do Oeste, Mato Grosso do Sul",
+    "produtos": ["deleniti", "itaque"],
+    "status": "inativo"
 }
 ###
-PATCH http://localhost:3333/api/v1/fornecedores/6789ace400935dfba939e4e2
+PATCH http://localhost:3333/api/v1/fornecedores/6789ace400935dfsba939e4e2
 Content-Type: application/json
 
 {

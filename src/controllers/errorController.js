@@ -1,10 +1,22 @@
 import AppErro from './../utils/appError.js'
 
+/*Caso NODE_ENV = production, retorna essa mensagem para id invalido
+caso o id fornecido contenha a msm qtd de digitos
+*/
 export const handleCastErrorDB = (err) => {
     const message = `Informado ID invalido ${err.path}: ${err.value}`
     return new AppErro(message, 400)
 }
 
+// ID ou nome duplicado, conforme schema do BD
+export const handleDuplicateFieldsDB = (err) => {
+    const value = err.errmsg.match(/(["'])(\\?.)*?\1/)[0];
+    // console.log(value)
+    const message = `O nome informado é invalido ${value}. Escolha outro`
+    return new AppErro(message, 400)
+}
+
+//Mensagem completa de erro no NODE_ENV=development
 export const sendErrorDev = (error, res) => {
     res.status(error.statusCode).json({
         status: error.status,
@@ -46,9 +58,11 @@ export default (error, req, res, next) => {
             message: error.message,
             stack: error.stack,
             path: error.path, // Inclui `path` para CastError
-            value: error.value, 
+            value: error.value,
+            errmsg: error.errmsg, // Inclui erro 11000 do mongosedriver
         }
-        if (err.name === 'CastError') err = handleCastErrorDB(err)
+        if (err.name === 'CastError') err = handleCastErrorDB(err);
+        if (err.code === 11000) err = handleDuplicateFieldsDB(err);
 
         sendErrorProd(err, res);
     }

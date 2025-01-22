@@ -1,3 +1,5 @@
+//padroniza os erros operacionais (erros conhecidos e esperados)
+
 export class AppErro extends Error {
     constructor (message, statusCode) {
         super(message);

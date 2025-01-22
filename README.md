@@ -16,7 +16,7 @@ Certifique-se de ter o Docker Compose instalado:
 
 - [Docker Compose](https://docs.docker.com/compose/)
 
-## Iniciando o Projeto
+## Iniciando o Projeto em modo de desenvolvimento
 
 1. **Variaveis de Ambiente.**
 
@@ -114,3 +114,12 @@ Certifique-se de ter o Docker Compose instalado:
    curl --location --request DELETE 'http://localhost:3333/api/v1/fornecedores/678d1db06299dbfa1b0f0673'
 
    ```
+
+## Iniciando o Projeto em Produção
+
+Para iniciar o projeto em produção e validar o tratamento de erros e exceções, descomente a linha do arquivo `compose.yml`
+
+```bash
+command: sh -c "apk add --no-cache tzdata && npm start" #DESENVOLVIMENTO
+ # command: sh -c "apk add --no-cache tzdata && npm run start:prod" #PRODUCAO
+```

@@ -7,7 +7,8 @@ const fornecSchema = new mongoose.Schema({
     nome: {
         type: String,
         required: [true, 'Um fornecedor deve ter um nome'],
-        trim: true //remove espacos em branco no inicio e fim
+        trim: true, //remove espacos em branco no inicio e fim
+        unique: true
     },
     nomeLower: String,
     cnpj: {
