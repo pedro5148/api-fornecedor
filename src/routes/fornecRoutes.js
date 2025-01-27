@@ -1,6 +1,4 @@
-//const express = require('express')
 import express from 'express'
-//const fornecController = require('../controllers/fornecedorController')
 import * as fornecController from '../controllers/fornecedorController.js'
 
 const router = express.Router()
@@ -19,5 +17,4 @@ router
     .patch(fornecController.updateFornec)
     .delete(fornecController.deleteFornec)
 
-//module.exports = router;
 export default router;

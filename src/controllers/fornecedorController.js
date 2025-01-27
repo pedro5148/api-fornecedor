@@ -4,7 +4,6 @@ import catchAsync from './../utils/catchAsync.js'
 import appErro from './../utils/appError.js'
 
 //Route Handlers
-//exports.getAllFornec = async (req, res) => {
 export const getAllFornec = catchAsync(async (req, res) => {
 
     console.log('Filtros da requisicao:', req.query) //testando filtros
@@ -18,8 +17,7 @@ export const getAllFornec = catchAsync(async (req, res) => {
         } 
     })
 });
-  
-//exports.getFornecbyId = async (req, res) => {
+
 export const getFornecbyId = catchAsync(async (req, res, next) => {
 
         const fornecedor = await fornecedorService.findById(req.params.id);
@@ -35,7 +33,6 @@ export const getFornecbyId = catchAsync(async (req, res, next) => {
         }); 
 });
 
-//exports.createFornec = async (req, res) => {
 export const createFornec = catchAsync(async (req, res, next) => {
 
         const newFornec = await fornecedorService.create(req.body);
@@ -49,7 +46,6 @@ export const createFornec = catchAsync(async (req, res, next) => {
         })      
 });
 
-//exports.updateFornec = (req, res) => {
 export const updateFornec = catchAsync(async (req, res, next) => { 
         const updateFornec = await fornecedorService.update(req.params.id, req.body)
 
@@ -64,7 +60,6 @@ export const updateFornec = catchAsync(async (req, res, next) => {
         });    
 });
 
-//exports.deleteFornec = (req, res) => {
 export const deleteFornec = catchAsync(async (req, res, next) => {
         const deleteFornec = await fornecedorService.delete(req.params.id); // nao devolver nada para o cliente (RESTFUL)
 

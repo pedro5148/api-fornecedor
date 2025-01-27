@@ -1,4 +1,3 @@
-//const mongoose = require('mongoose');
 import mongoose from 'mongoose'
 import slugify from 'slugify'
 
@@ -58,7 +57,7 @@ const fornecSchema = new mongoose.Schema({
 /*Propriedades virtuais = permite adicionar campos na response sem necessariamente existir no BD
 Nao pode ser usado em consulta pois nao é parte do BD
 
-duration nao existe no schema
+duration nao existe no schema, é apenas um teste da funcionalidade do mongodb
 
 */
 
@@ -101,24 +100,4 @@ fornecSchema.post(/^find/, function (docs, next) {
 // Definindo o modelo 
 const Fornec = mongoose.model('fornecedores', fornecSchema);
 
-// const testeFornec = new Fornec({
-//     nome: "Requinte 3",
-//     cnpj: "10.641.901/0001-16",
-//     telefone: "62 99999-9999",
-//     email: "contato@r3suprimentos.com",
-//     endereco: "Av Sao Francisco, 822, Goiania, GO, 01000-000",
-//     produtos: [
-//       "Produto A",
-//       "Produto B"
-//     ],
-//     status: "ativo"
-// }); 
-
-// testeFornec.save().then(doc => {
-//     console.log(doc)
-// }).catch(err => {
-//     console.log("Erro ao inserir:", err)
-// })
-
-//module.exports = Fornec;
 export default Fornec;

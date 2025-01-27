@@ -3,7 +3,7 @@ const app = express()
 import morgan from 'morgan'
 import path from 'path'
 
-//Rota/Controller
+// Controller
 import fornecRoute from './routes/fornecRoutes.js';
 import appError from './utils/appError.js';
 import globalErro from './controllers/errorController.js'
