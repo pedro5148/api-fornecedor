@@ -58,7 +58,7 @@ Certifique-se de ter o Docker Compose instalado:
    - Execute o script de importação
 
    ```bash
-    node import-fornecedores.js --import
+    docker compose exec api-fornecedor node /app/data/import-fornecedores.js --import
    ```
 
 5. **Monitorando os logs das requisições**
